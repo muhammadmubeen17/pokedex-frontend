@@ -34,7 +34,7 @@ function Home() {
                                           `);
 
       setTypes(response);
-      console.log(response)
+      // console.log(response)
     };
     fetchTypes();
   }, []);
