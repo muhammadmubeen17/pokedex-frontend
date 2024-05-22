@@ -9,7 +9,7 @@ function Header() {
       <nav className='grid grid-cols-12 py-5 gap-y-10'>
         <div className="flex gap-10 col-span-12 sm:col-span-6">
           <Link to={"/"} className="branding flex justify-center items-center gap-3 text-black hover:no-underline hover:text-primary focus:text-black focus:no-underline">
-            <img src='/logo.svg' alt='logo' width={20} height={20} />
+            <img src='/pokedex-frontend/logo.svg' alt='logo' width={20} height={20} />
             <div className="font-bold uppercase">UIN POKEDEX</div>
           </Link>
           <Link to={'/teams'} className="flex justify-center items-center text-black hover:no-underline hover:text-primary focus:text-black focus:no-underline">
