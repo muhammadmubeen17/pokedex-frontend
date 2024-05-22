@@ -15,7 +15,7 @@ function Teams() {
                                               "imageUrl": image.asset->url
                                             }`);
             setTeams(response);
-            console.log(response);
+            // console.log(response);
         };
         fetchTeams();
     }, []);

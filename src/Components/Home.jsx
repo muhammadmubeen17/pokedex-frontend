@@ -18,7 +18,7 @@ function Home() {
                                           `);
 
       setPokemons(response);
-      console.log(response)
+      // console.log(response)
     };
     fetchPokemons();
   }, []);

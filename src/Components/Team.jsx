@@ -28,7 +28,7 @@ function Team() {
             );
             setTeam(response);
             setPokemons(response.pokemons);
-            console.log(response);
+            // console.log(response);
         };
         fetchTeams();
     }, []);

@@ -37,12 +37,12 @@ function Pokemon() {
                 if (!response) {
                     navigate('/404');
                 } else {
-                    console.log(response);
+                    // console.log(response);
                     setPokemon(response);
                     setTypes(response.types);
                 }
             }).catch((error) => {
-                console.error(error);
+                // console.error(error);
             });
         }
     }, [slug])

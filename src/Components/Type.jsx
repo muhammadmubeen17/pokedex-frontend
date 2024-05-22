@@ -32,7 +32,7 @@ function Type() {
 
         if (response) {
             setType(response);
-            console.log(response)
+            // console.log(response)
             document.title = `Pokemon Type - ${response.name}`;
         } else {
             navigate('/404');
