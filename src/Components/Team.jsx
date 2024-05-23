@@ -47,7 +47,7 @@ function Team() {
                         <h1 className='text-xl sm:text-2xl md:text-3xl text-black font-bold'>{team.name}</h1>
                         <h2 className='text-lg uppercase font-bold mt-10'>Pokemons</h2>
                         <div className="flex flex-wrap mt-5">
-                            {
+                            { pokemons &&
                                 pokemons.length > 0 ?
                                     pokemons.map((pokemon, index) => (
                                         <div key={index} className="w-full sm:w-1/2 md:w-1/3">
