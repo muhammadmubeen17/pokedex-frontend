@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Input, InputGroup, Grid, Row, Col } from 'rsuite';
 import SearchIcon from '@rsuite/icons/Search';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
 function Header() {
+  const [search, setSearch] = React.useState('');
+
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const query = searchParams.get('query');
+    if (query) {
+      setSearch(query);
+    }
+  }, [searchParams]);
+
+  const handleSearch = () => {
+    if (search.trim() === '') {
+      navigate(`/`);
+    } else {
+      navigate(`/search?query=${search}`);
+    }
+  }
+
   return (
     <header className='max-w-screen-lg mx-auto'>
       <nav className='grid grid-cols-12 py-5 gap-y-10'>
@@ -18,8 +38,8 @@ function Header() {
         </div>
         <div className="col-span-12 sm:col-span-6">
           <InputGroup size='md' inside className='w-full'>
-            <Input placeholder='Search' className='w-full' />
-            <InputGroup.Button>
+            <Input placeholder='Search' className='w-full' value={search} onChange={setSearch} onPressEnter={handleSearch} />
+            <InputGroup.Button onClick={handleSearch}>
               <SearchIcon />
             </InputGroup.Button>
           </InputGroup>

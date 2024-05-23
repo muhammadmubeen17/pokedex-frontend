@@ -47,8 +47,8 @@ function Teams() {
                                         </div>
                                     ))
                                     :
-                                    <div className="w-full text-center">
-                                        No Teams Found
+                                    <div className="w-full">
+                                        No Teams Found <span role='img' aria-label='sad'>😢</span>
                                     </div>
                             }
                         </div>

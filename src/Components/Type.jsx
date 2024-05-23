@@ -77,8 +77,8 @@ function Type() {
                                         </div>
                                     ))
                                     :
-                                    <div className="w-full text-center">
-                                        No Pokemons Found
+                                    <div className="w-full">
+                                        No Pokemons Found for the type <span className='font-bold'>"{slug}"</span> <span role='img' aria-label='sad'>😢</span>
                                     </div>
                             }
                         </div>

@@ -13,6 +13,8 @@ import Teams from './Components/Teams';
 import Pokemon from './Components/Pokemon';
 import Team from './Components/Team';
 import Type from './Components/Type';
+import NotFound from './Components/NotFound';
+import Search from './Components/Search';
 
 function App() {
 
@@ -26,11 +28,10 @@ function App() {
         { path: "teams", element: <Teams /> },
         { path: "team/:slug", element: <Team /> },
         { path: "type/:slug", element: <Type /> },
+        { path: "search", element: <Search /> },
+        { path: "404", element: <NotFound /> },
+        { path: "*", element: <Navigate to="/404" /> },
       ],
-    },
-    {
-      path: "*",
-      element: <Navigate to="/" replace />
     },
   ]);
 

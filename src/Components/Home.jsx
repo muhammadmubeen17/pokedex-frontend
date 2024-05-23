@@ -66,7 +66,9 @@ function Home() {
                       </div>
                     ))
                     :
-                    <PageLoader />
+                    <div className="w-full text-center">
+                      No Pokemon Found
+                    </div>
                 }
               </div>
             </div>

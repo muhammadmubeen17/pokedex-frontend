@@ -74,7 +74,7 @@ function Pokemon() {
                                                 <div className="flex flex-wrap mb-3">
                                                     {
                                                         types.map((type, index) => (
-                                                            <div key={index} className="w-1/2 xs:w-1/2">
+                                                            <div key={index} className={`${types.length === 1 ? 'w-full' : 'w-1/2'}`}>
                                                                 <div className={`card px-2 py-2 rounded shadow-lg m-1 sm:m-2`} style={{ backgroundColor: type.color ? type.color : '#F9F9F9' }}>
                                                                     <div className="flex items-center gap-2">
                                                                         <img src={type.imageUrl} alt={type.name} width={40} />

@@ -1,42 +1,37 @@
-import React, { useEffect, useState } from 'react'
-import Client from '../sanityClient';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { Link, useSearchParams } from 'react-router-dom';
 import PageLoader from './Loader';
+import Client from '../sanityClient';
 
-function Team() {
-    const [team, setTeam] = useState([]);
-    const [pokemons, setPokemons] = useState([]);
-    const [loader, setLoader] = useState(true);
+function Search() {
+    const [pokemons, setPokemons] = React.useState([]);
+    const [loader, setLoader] = React.useState(true);
+    const [searchParams] = useSearchParams();
 
-    const { slug } = useParams();
-    const navigate = useNavigate();
-
-    const fetchTeams = async () => {
-        const response = await Client.fetch(
-            `*[_type == "team" && slug.current == $slug]{
-              name,
-              slug,
-              description,
-              "imageUrl": image.asset->url,
-              pokemons[]->{
+    const fetchPokemons = async (query) => {
+        try {
+            const response = await Client.fetch(`*[_type == "pokemon" && name match "*${query}*"]{
                 name,
                 slug,
                 rank,
                 "imageUrl": image.asset->url
-              } | order(rank asc)
-            }[0]`,
-            { slug }
-        );
-        setTeam(response);
-        setPokemons(response.pokemons);
-        // console.log(response);
-    };
-    useEffect(() => {
-        fetchTeams();
-        setTimeout(() => {
+            }`);
+            setPokemons(response);
+        } catch (error) {
+            console.error(error);
+        } finally {
             setLoader(false);
-        }, 1000);
-    }, []);
+        }
+    };
+
+    useEffect(() => {
+        const query = searchParams.get('query');
+        if (query) {
+            fetchPokemons(query);
+        } else {
+            setLoader(false);
+        }
+    }, [searchParams]);
 
     return (
         <>
@@ -44,8 +39,7 @@ function Team() {
                 loader ? <PageLoader />
                     :
                     <div className="mt-5">
-                        <h1 className='text-xl sm:text-2xl md:text-3xl text-black font-bold'>{team.name}</h1>
-                        <h2 className='text-lg uppercase font-bold mt-10'>Pokemons</h2>
+                        <h1 className='text-xl sm:text-2xl md:text-3xl text-black font-bold'>Search Results</h1>
                         <div className="flex flex-wrap mt-5">
                             {
                                 pokemons.length > 0 ?
@@ -63,7 +57,7 @@ function Team() {
                                     ))
                                     :
                                     <div className="w-full">
-                                        No Pokemons Found for the team <span className='font-bold'>"{team.name}"</span> <span role='img' aria-label='sad'>😢</span>
+                                        No Pokemon Found for the search query <span className='font-bold'>"{searchParams.get('query')}"</span> <span role='img' aria-label='sad'>😢</span>
                                     </div>
                             }
                         </div>
@@ -73,7 +67,7 @@ function Team() {
     )
 }
 
-export default Team
+export default Search
 
 // Function to pad rank with leading zeros
 const padRank = (rank) => {
